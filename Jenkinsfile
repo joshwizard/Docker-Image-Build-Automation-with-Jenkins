@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = "joshmurih/Flask_App"
+        DOCKER_IMAGE_NAME = "joshmurih/flask_app"
         DOCKER_REGISTRY = "docker.io"
         DOCKER_CREDENTIALS_ID = "docker-hub-credentials"
     }
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${joshmurih/Flask_App}:${env.BUILD_ID}")
+                    docker.build("${joshmurih/flask_app}:${env.BUILD_ID}")
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://docker.io", "docker-hub-credentials") {
-                        docker.image("${joshmurih/Flask_App}:${env.BUILD_ID}").push()
+                        docker.image("${joshmurih/flask_app}:${env.BUILD_ID}").push()
                     }
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
         stage('Clean Up') {
             steps {
                 script {
-                    sh "docker rmi ${joshmurih/Flask_App}:${env.BUILD_ID}"
+                    sh "docker rmi ${joshmurih/flask_app}:${env.BUILD_ID}"
                 }
             }
         }
