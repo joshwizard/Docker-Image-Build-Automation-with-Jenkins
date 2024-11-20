@@ -13,4 +13,4 @@ RUN pip install -r requirements.txt
 EXPOSE 3000
 
 # Define the command to run the app and expose the port the app runs on
-CMD python ./web.py
+CMD ["python", "./web.py"]
